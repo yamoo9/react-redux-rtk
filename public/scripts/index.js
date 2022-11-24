@@ -34,8 +34,9 @@ const handleAppClick = (e) => {
 
 app?.addEventListener('click', handleAppClick);
 
-const render = ({ count }) => {
-  value.textContent = count;
+const render = () => {
+  const { count: updateCountValue } = store.getState();
+  value.textContent = updateCountValue;
 };
 
 store.subscribe(render);
