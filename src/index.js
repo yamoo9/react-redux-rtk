@@ -1,13 +1,18 @@
-import './styles/globals.css';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import 'styles/globals.css';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { store } from 'store/store';
 import App from './App';
-import { CounterProvider } from './contexts/counter';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <CounterProvider>
+const container = createRoot(document.getElementById('root'));
+
+function render() {
+  container.render(
+    <StrictMode>
       <App />
-    </CounterProvider>
-  </React.StrictMode>
-);
+    </StrictMode>
+  );
+}
+
+render();
+store.subscribe(render);

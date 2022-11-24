@@ -1,18 +1,40 @@
+import { useState, useCallback } from 'react';
+import { store } from 'store/store';
+import {
+  increment,
+  decrement,
+  incrementByAmount,
+} from 'features/counter/counter.slice';
+
 import { Row } from './Row';
 import { Button } from './Button';
 import { Output } from './Output';
 import { Input } from './Input';
-import { useCounter } from '../contexts/counter';
 
 export function Counter() {
-  const {
-    count,
-    amount,
-    onIncrement,
-    onDecrement,
-    onIncrementByAmount,
-    onIncrementAsync,
-  } = useCounter();
+  const [amount, setAmount] = useState(2);
+
+  const onChangeAmount = useCallback((e) => {
+    setAmount(Number(e.target.value));
+  }, []);
+
+  const { count } = store.getState();
+
+  const onIncrement = useCallback(() => {
+    store.dispatch(increment());
+  }, []);
+
+  const onDecrement = useCallback(() => {
+    store.dispatch(decrement());
+  }, []);
+
+  const onIncrementByAmount = useCallback(() => {
+    store.dispatch(incrementByAmount(amount));
+  }, [amount]);
+
+  const onIncrementAsync = useCallback(() => {
+    setTimeout(onIncrementByAmount, 1000);
+  }, [onIncrementByAmount]);
 
   return (
     <div className="Counter">
@@ -26,24 +48,22 @@ export function Counter() {
         </Button>
       </Row>
       <Row>
-        <Input label="카운트 변경 값 설정" defaultValue={amount} />
-        <Button
-          className="incByAmountButton"
-          onClick={() => {
-            onIncrementByAmount(amount);
-          }}
-        >
+        <Input
+          label="카운트 변경 값 설정"
+          value={amount}
+          onChange={onChangeAmount}
+        />
+        <Button className="incByAmountButton" onClick={onIncrementByAmount}>
           카운트 변경
         </Button>
-        <Button
-          className="asyncButton"
-          onClick={() => {
-            onIncrementAsync(amount);
-          }}
-        >
+        <Button className="asyncButton" onClick={onIncrementAsync}>
           카운트 변경(비동기)
         </Button>
       </Row>
     </div>
   );
 }
+
+Counter.defaultProps = {
+  amount: 2,
+};
