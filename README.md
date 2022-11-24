@@ -1,3 +1,4 @@
-# Redux Devtools
+# Redux Clean Code
 
-[Redux Devtools](https://github.com/reduxjs/redux-devtools#redux-devtools) 브라우저 확장 사용법을 학습합니다.
+Redux의 기능(feature) 별 액션 타입, 액션 크리에이터, 리듀서 코드 등을 낱개의 파일로 관리하는 것을 대부분 좋아하지 않을 것입니다.
+각 기능을 하나의 파일에 묶어 관리하다면 코드 작성의 불편함이 많이 줄어들 수 있습니다.
