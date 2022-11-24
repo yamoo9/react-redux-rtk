@@ -3,7 +3,7 @@ import {
   increment,
   decrement,
   incrementByAmount,
-} from './store/features/counter/actionCreators.js';
+} from './store/features/counter/counter.slice.js';
 
 /* -------------------------------------------------------------------------- */
 
