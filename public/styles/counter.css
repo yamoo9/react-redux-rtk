@@ -1,0 +1,76 @@
+.Counter .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Counter .row:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.Counter .value {
+  margin-top: 2px;
+  padding-right: 16px;
+  padding-left: 16px;
+  font-size: 78px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.Counter .input {
+  width: 64px;
+  margin-right: 8px;
+  padding: 2px;
+  text-align: center;
+  font-size: 32px;
+}
+
+.Counter .button {
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  font-size: 32px;
+  background: none;
+  background-color: rgba(112, 76, 182, 0.1);
+  color: rgb(112, 76, 182);
+  transition: all 0.15s;
+  outline: none;
+}
+
+.Counter .button:hover, 
+.Counter .button:focus {
+  border: 2px solid rgba(112, 76, 182, 0.4);
+}
+
+.Counter .button:active {
+  background-color: rgba(112, 76, 182, 0.2);
+}
+
+.Counter .asyncButton {
+  position: relative;
+  margin-left: 8px;
+  composes: button;
+}
+
+.Counter .asyncButton::after {
+  content: "";
+  opacity: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(112, 76, 182, 0.15);
+  transition: width 1s linear, opacity 0.5s ease 1s;
+}
+
+.Counter .asyncButton:active::after {
+  opacity: 1;
+  width: 0%;
+  transition: 0s;
+}
