@@ -1,3 +1,3 @@
-# Like Redux
+# Using Redux
 
-Redux에 대한 이해도를 높이기 위해 직접 Redux 처럼 작동하도록 구현합니다.
+구현한 Redux 대용품 대신, 실제 Redux를 사용해봅니다.
