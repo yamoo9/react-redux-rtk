@@ -1,3 +1,3 @@
-# Using Redux
+# Redux Devtools
 
-구현한 Redux 대용품 대신, 실제 Redux를 사용해봅니다.
+[Redux Devtools](https://github.com/reduxjs/redux-devtools#redux-devtools) 브라우저 확장 사용법을 학습합니다.
