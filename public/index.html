@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>카운터 앱 — JavaScript + Redux 프로그래밍</title>
+    <meta name="description" content="JavaScript + Redux 프로그래밍으로 작성하는 카운터 앱입니다." />
+    <link rel="stylesheet" href="//unpkg.com/pretendard/dist/web/static/pretendard.css" as="style" crossorigin />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="icon" href="assets/redux.svg" />
+    <script type="module" src="scripts/index.js"></script>
+  </head>
+
+  <body>
+
+    <div class="App">
+      <header class="App-header">
+        <img src="assets/redux.svg" class="App-logo" alt="리덕스(Redux)" />
+        <div class="Counter">
+          <div class="row">
+            <button class="incButton button" aria-label="카운트 증가">+</button>
+            <span class="value">0</span>
+            <button class="decButton button" aria-label="카운트 감소">-</button>
+          </div>
+          <div class="row">
+            <input class="input" aria-label="카운트 변경 값 설정" value="2">
+            <button class="incByAmountButton button">카운트 변경</button>
+            <button class="asyncButton button">카운트 변경(비동기)</button>
+          </div>
+        </div>
+      </header>
+    </div>
+
+  </body>
+
+</html>

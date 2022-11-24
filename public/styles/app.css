@@ -1,0 +1,40 @@
+.App {
+  translate: 0 -5vh;
+  text-align: center;
+}
+
+.App-logo {
+  pointer-events: none;
+  height: 30vmin;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-floating infinite 3s ease-in-out;
+  }
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: var(--indigo-500);
+}
+
+@keyframes App-logo-floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
