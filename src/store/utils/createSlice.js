@@ -1,7 +1,7 @@
-import { createAction } from '../../features/counter/demo/createAction';
-import { createReducer } from './createReducer';
+import createAction from './createAction';
+import createReducer from './createReducer';
 
-export function createSlice({ name, initialState, reducers }) {
+function createSlice({ name, initialState, reducers }) {
   const slice = {
     actions: Object.keys(reducers).reduce(
       (actions, reducerPath) =>
@@ -13,3 +13,5 @@ export function createSlice({ name, initialState, reducers }) {
 
   return slice;
 }
+
+export default createSlice;

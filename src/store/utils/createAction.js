@@ -1,6 +1,6 @@
 // 참고: https://redux-toolkit.js.org/api/createAction
 
-export function createAction(type, prepareFn) {
+function createAction(type, prepareFn) {
   const action = { type };
   const actionCreator = (payload) => {
     if (payload) action.payload = payload;
@@ -11,3 +11,5 @@ export function createAction(type, prepareFn) {
   actionCreator.toString = () => type;
   return actionCreator;
 }
+
+export default createAction;

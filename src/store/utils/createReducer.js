@@ -1,4 +1,4 @@
-export function createReducer(initialState, reducers) {
+function createReducer(initialState, reducers) {
   const combinedReducer = (state = initialState, action) => {
     const reducersPathValue = Object.entries(reducers);
     let index = reducersPathValue.findIndex(
@@ -13,3 +13,5 @@ export function createReducer(initialState, reducers) {
   };
   return combinedReducer;
 }
+
+export default createReducer;

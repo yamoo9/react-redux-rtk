@@ -5,7 +5,7 @@
 import { combineReducers, createStore } from 'redux';
 import { devToolsEnhancer } from '@redux-devtools/extension';
 
-export function configureStore({ reducer, preloadedState, devTools }) {
+function configureStore({ reducer, preloadedState, devTools }) {
   let rootReducer;
 
   if (typeof reducer === 'function') {
@@ -20,3 +20,5 @@ export function configureStore({ reducer, preloadedState, devTools }) {
 
   return createStore(rootReducer, preloadedState, enhancer);
 }
+
+export default configureStore;
