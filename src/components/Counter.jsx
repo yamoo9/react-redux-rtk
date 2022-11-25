@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { store } from 'store/store';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   increment,
   decrement,
@@ -18,19 +18,20 @@ export function Counter() {
     setAmount(Number(e.target.value));
   }, []);
 
-  const { count } = store.getState();
+  const count = useSelector((state) => state.count);
+  const dispatch = useDispatch();
 
   const onIncrement = useCallback(() => {
-    store.dispatch(increment());
-  }, []);
+    dispatch(increment());
+  }, [dispatch]);
 
   const onDecrement = useCallback(() => {
-    store.dispatch(decrement());
-  }, []);
+    dispatch(decrement());
+  }, [dispatch]);
 
   const onIncrementByAmount = useCallback(() => {
-    store.dispatch(incrementByAmount(amount));
-  }, [amount]);
+    dispatch(incrementByAmount(amount));
+  }, [amount, dispatch]);
 
   const onIncrementAsync = useCallback(() => {
     setTimeout(onIncrementByAmount, 1000);
@@ -63,7 +64,3 @@ export function Counter() {
     </div>
   );
 }
-
-Counter.defaultProps = {
-  amount: 2,
-};
