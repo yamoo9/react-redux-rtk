@@ -1,33 +1,15 @@
 import initialCartItems from './initialCartItems';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
-/* -------------------------------------------------------------------------- */
-/* Action Types                                                               */
-/* -------------------------------------------------------------------------- */
-
-export const INCREASE = 'cart/increase';
-export const DECREASE = 'cart/decrease';
-export const REMOVE = 'cart/remove';
-export const CLEAR_CART = 'cart/clearCart';
-export const GET_CART_ITEMS = 'cart/getCartItems';
-export const GET_CART_TOTAL = 'cart/getCartTotal';
-
-/* -------------------------------------------------------------------------- */
-/* Intial State                                                               */
-/* -------------------------------------------------------------------------- */
-
-export const initialCart = {
-  items: initialCartItems,
-  totalAmount: 0,
-  totalCount: 0,
-};
-
-/* -------------------------------------------------------------------------- */
-/* Reducer                                                                    */
-/* -------------------------------------------------------------------------- */
-
-export default function reducer(state = initialCart, action) {
-  switch (action.type) {
-    case INCREASE:
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState: {
+    items: initialCartItems,
+    totalAmount: 0,
+    totalCount: 0,
+  },
+  reducers: {
+    increase(state, action) {
       return {
         ...state,
         items: state.items.map((item) => {
@@ -37,7 +19,8 @@ export default function reducer(state = initialCart, action) {
           return item;
         }),
       };
-    case DECREASE:
+    },
+    decrease(state, action) {
       return {
         ...state,
         items: state.items
@@ -49,19 +32,23 @@ export default function reducer(state = initialCart, action) {
           })
           .filter((item) => item.amount !== 0),
       };
-    case REMOVE:
+    },
+    remove(state, action) {
       return state + action.payload;
-    case CLEAR_CART:
+    },
+    clearCart(state, action) {
       return {
         ...state,
         items: [],
       };
-    case GET_CART_ITEMS:
+    },
+    getCartItems(state, action) {
       return {
         ...state,
         items: initialCartItems,
       };
-    case GET_CART_TOTAL:
+    },
+    getCartTotal(state, action) {
       let { totalAmount, totalCount } = state.items.reduce(
         (cartTotal, cartItem) => {
           const { price, amount } = cartItem;
@@ -82,18 +69,32 @@ export default function reducer(state = initialCart, action) {
         totalAmount: parseInt(totalAmount, 10),
         totalCount,
       };
-    default:
-      return state;
-  }
-}
+    },
+  },
+});
 
-/* -------------------------------------------------------------------------- */
-/* Action Creators                                                            */
-/* -------------------------------------------------------------------------- */
+export const {
+  increase,
+  decrease,
+  remove,
+  clearCart,
+  getCartItems,
+  getCartTotal,
+} = cartSlice.actions;
 
-export const increase = (id) => ({ type: INCREASE, payload: id });
-export const decrease = (id) => ({ type: DECREASE, payload: id });
-export const remove = (id) => ({ type: REMOVE, payload: id });
-export const clearCart = () => ({ type: CLEAR_CART });
-export const getCartItems = () => ({ type: GET_CART_ITEMS });
-export const getCartTotal = () => ({ type: GET_CART_TOTAL });
+export default cartSlice.reducer;
+
+export const selectItems = createSelector(
+  (state) => state.items,
+  (items) => items
+);
+
+export const selectTotalAmount = createSelector(
+  (state) => state.totalAmount,
+  (totalAmount) => totalAmount
+);
+
+export const selectTotalCount = createSelector(
+  (state) => state.totalCount,
+  (totalCount) => totalCount
+);

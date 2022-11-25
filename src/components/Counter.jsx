@@ -4,6 +4,7 @@ import {
   increment,
   decrement,
   incrementByAmount,
+  selectCount,
 } from 'features/counter/counter.slice';
 
 import { Row } from './Row';
@@ -18,7 +19,7 @@ export function Counter() {
     setAmount(Number(e.target.value));
   }, []);
 
-  const count = useSelector((state) => state.count);
+  const count = useSelector(selectCount);
   const dispatch = useDispatch();
 
   const onIncrement = useCallback(() => {

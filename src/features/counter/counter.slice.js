@@ -1,43 +1,30 @@
-/* -------------------------------------------------------------------------- */
-/* Action Types                                                               */
-/* -------------------------------------------------------------------------- */
-
-const INCREMENT = 'counter/increment';
-const DECREMENT = 'counter/decrement';
-const INCREMENT_BY_AMOUNT = 'counter/increment_by_amount';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 /* -------------------------------------------------------------------------- */
-/* Intial State                                                               */
+/* Counter Slice                                                              */
 /* -------------------------------------------------------------------------- */
 
-export const initialCount = 0;
-
-/* -------------------------------------------------------------------------- */
-/* Reducer                                                                    */
-/* -------------------------------------------------------------------------- */
-
-export default function reducer(state = initialCount, action) {
-  switch (action.type) {
-    case INCREMENT:
-      return state + 1;
-    case DECREMENT:
-      return state - 1;
-    case INCREMENT_BY_AMOUNT:
-      return state + action.payload;
-    default:
-      return state;
-  }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Action Creators                                                            */
-/* -------------------------------------------------------------------------- */
-
-export const increment = () => ({ type: INCREMENT });
-
-export const decrement = () => ({ type: DECREMENT });
-
-export const incrementByAmount = (amount) => ({
-  type: INCREMENT_BY_AMOUNT,
-  payload: amount,
+const counterSlice = createSlice({
+  name: 'count',
+  initialState: 0,
+  reducers: {
+    increment(state, action) {
+      return (state += 1);
+    },
+    decrement(state, action) {
+      return (state -= 1);
+    },
+    incrementByAmount(state, action) {
+      return (state += action.payload);
+    },
+  },
 });
+
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+
+export default counterSlice.reducer;
+
+export const selectCount = createSelector(
+  (state) => state.count,
+  (count) => count
+);
