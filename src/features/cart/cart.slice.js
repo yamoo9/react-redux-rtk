@@ -1,4 +1,4 @@
-import initialCartItems from './initialCartItems.js';
+import initialCartItems from './initialCartItems';
 
 /* -------------------------------------------------------------------------- */
 /* Action Types                                                               */
@@ -59,7 +59,7 @@ export default function reducer(state = initialCart, action) {
     case GET_CART_ITEMS:
       return {
         ...state,
-        items: cartItems,
+        items: initialCartItems,
       };
     case GET_CART_TOTAL:
       let { totalAmount, totalCount } = state.items.reduce(
